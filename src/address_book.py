@@ -76,37 +76,40 @@ class AddressBook(UserDict):
         return "\n".join(str(record) for record in self.data.values())
 
 
-# Створення нової адресної книги
-book = AddressBook()
 
-# Створення запису для John
-john_record = Record("John")
-john_record.add_phone("1234567890")
-john_record.add_phone("5555555555")
+# TESTS
 
-# Додавання John до адресної книги
-book.add_record(john_record)
+# # Створення нової адресної книги
+# book = AddressBook()
 
-# Створення та додавання Jane
-jane_record = Record("Jane")
-jane_record.add_phone("9876543210")
-book.add_record(jane_record)
+# # Створення запису для John
+# john_record = Record("John")
+# john_record.add_phone("1234567890")
+# john_record.add_phone("5555555555")
 
-# Виведення всіх записів
-print(book)
+# # Додавання John до адресної книги
+# book.add_record(john_record)
 
-# Знаходження та редагування телефону John
-john = book.find("John")
-john.edit_phone("1234567890", "1112223333")
+# # Створення та додавання Jane
+# jane_record = Record("Jane")
+# jane_record.add_phone("9876543210")
+# book.add_record(jane_record)
 
-print(john)
+# # Виведення всіх записів
+# print(book)
 
-# Пошук конкретного телефону
-found_phone = john.find_phone("5555555555")
-print(f"{john.name}: {found_phone}")
+# # Знаходження та редагування телефону John
+# john = book.find("John")
+# john.edit_phone("1234567890", "1112223333")
 
-# Видалення Jane
-book.delete("Jane")
+# print(john)
 
-print("\nAfter deleting Jane:")
-print(book)
+# # Пошук конкретного телефону
+# found_phone = john.find_phone("5555555555")
+# print(f"{john.name}: {found_phone}")
+
+# # Видалення Jane
+# book.delete("Jane")
+
+# print("\nAfter deleting Jane:")
+# print(book)
