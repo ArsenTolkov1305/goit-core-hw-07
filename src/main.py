@@ -13,7 +13,7 @@ def input_error(func):
             return func(*args, **kwargs)
         except ValueError as error:
             return str(error)
-        except KeyError:
+        except (KeyError, AttributeError):
             return "Contact not found."
         except IndexError:
             return "Enter user name."
@@ -44,10 +44,6 @@ def change_contact(args, book: AddressBook):
     name, old_phone, new_phone = args
 
     record = book.find(name)
-
-    if record is None:
-        raise KeyError
-
     record.edit_phone(old_phone, new_phone)
 
     return "Contact updated."
@@ -58,9 +54,6 @@ def show_phone(args, book: AddressBook):
     name = args[0]
 
     record = book.find(name)
-
-    if record is None:
-        raise KeyError
 
     if not record.phones:
         return "No phone numbers."
@@ -78,10 +71,6 @@ def add_birthday(args, book: AddressBook):
     name, birthday = args
 
     record = book.find(name)
-
-    if record is None:
-        raise KeyError
-
     record.add_birthday(birthday)
 
     return "Birthday added."
@@ -93,13 +82,10 @@ def show_birthday(args, book: AddressBook):
 
     record = book.find(name)
 
-    if record is None:
-        raise KeyError
-
     if record.birthday is None:
         return "Birthday is not set."
 
-    return record.birthday.value.strftime("%d.%m.%Y")
+    return record.birthday.value
 
 
 @input_error
